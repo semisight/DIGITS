@@ -13,22 +13,25 @@ env:
         - WITH_CUDA=false
         - WITH_CMAKE=false
 before_install:
-    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-    - export PATH=/home/travis/miniconda/bin:$PATH
+    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/cuda/lib64
+    - export PATH=$PATH:/home/travis/miniconda/bin:/usr/local/cuda/bin
 install:
     # Caffe
-    - pushd .
     - ./scripts/travis/install-caffe.sh $(pwd)/deps/caffe
+
+    # Torch
+    - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
 
     # DIGITS
     - sudo apt-get install graphviz
     # conda (fast)
-    - conda install --yes gevent greenlet
+    - conda install --quiet --yes gevent greenlet
     # pip (slow)
-    - pip install -r requirements.txt
-    - pip install -r requirements_test.txt
+    - pip install --quiet -r requirements.txt
+    - pip install --quiet -r requirements_test.txt
 before_script:
     - export CAFFE_HOME=$(pwd)/deps/caffe
+    - export TORCH_HOME=$(pwd)/deps/torch
 script:
     ./digits-test --with-coverage --cover-package=tools,digits
 after_success:

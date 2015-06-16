@@ -2,6 +2,7 @@
 # Copyright (c) 2015, NVIDIA CORPORATION.  All rights reserved.
 
 set -e
+set -x
 
 if [ "$#" -ne 1 ];
 then
@@ -27,12 +28,12 @@ sudo chown travis:travis -R /home/travis/miniconda
 cp Makefile.config.example Makefile.config
 sed -i 's/# CPU_ONLY/CPU_ONLY/g' Makefile.config
 sed -i 's/USE_CUDNN/#USE_CUDNN/g' Makefile.config
-make --jobs=$NUM_THREADS all
-make --jobs=$NUM_THREADS pycaffe
+make --jobs=$NUM_THREADS --silent all
+make --jobs=$NUM_THREADS --silent pycaffe
 
 # Install python dependencies
 # conda (fast)
-conda install --yes cython nose ipython h5py pandas python-gflags
+conda install --yes --quiet cython nose ipython h5py pandas python-gflags
 # pip (slow)
 for req in $(cat python/requirements.txt); do pip install $req; done
 
