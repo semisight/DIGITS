@@ -15,7 +15,7 @@ set -x
 mkdir -p $INSTALL_DIR
 
 # Install torch
-curl -sk https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash &>/dev/null
+curl -sk https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash
 git clone https://github.com/torch/distro.git $INSTALL_DIR --recursive
 cd $INSTALL_DIR
 ./install.sh -b
