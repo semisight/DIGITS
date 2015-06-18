@@ -20,8 +20,6 @@ install:
     - ./scripts/travis/install-caffe.sh $(pwd)/deps/caffe
 
     # XXX
-    - which nvcc
-    - ls -al /usr/local
     - conda list
     - pip list
 

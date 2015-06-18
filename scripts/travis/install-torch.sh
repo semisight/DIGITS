@@ -2,7 +2,6 @@
 # Copyright (c) 2015, NVIDIA CORPORATION.  All rights reserved.
 
 set -e
-set -x
 
 if [ "$#" -ne 1 ];
 then
@@ -10,6 +9,9 @@ then
     exit 1
 fi
 INSTALL_DIR=$1
+
+set -x
+
 mkdir -p $INSTALL_DIR
 
 # Install torch
