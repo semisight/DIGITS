@@ -29,14 +29,11 @@ popd
 # Install luarocks modules
 install_rock ()
 {
-    $INSTALL_DIR/install/bin/luarocks install $@ &>/dev/null
+    travis_wait $INSTALL_DIR/install/bin/luarocks install $@ &>/dev/null
 }
 
 install_rock image
-
-#install_rock inn
-$INSTALL_DIR/install/bin/luarocks install inn
-
+install_rock inn
 install_rock "https://raw.github.com/Sravan2j/lua-pb/master/lua-pb-scm-0.rockspec"
 install_rock ccn2
 install_rock lightningmdb \
