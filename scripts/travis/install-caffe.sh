@@ -33,12 +33,14 @@ make --jobs=$NUM_THREADS --silent pycaffe
 
 # Install python dependencies
 # conda (fast)
-conda install --yes --quiet cython nose ipython h5py pandas python-gflags
+# conda install --yes numpy scipy matplotlib scikit-image pip
+conda install --yes --quiet cython nose h5py pandas python-gflags
 
-# XXX
-conda list
-pip list
+#XXX
+which pip
 
 # pip (slow)
-for req in $(cat python/requirements.txt); do pip install $req; done
+# pip install protobuf
+pip install --quiet "leveldb>=0.191" "networkx>=1.8.1" "nose>=1.3.0" "python-dateutil>=1.4,<2" "python-gflags>=2.0" "pyyaml>=3.10" "Pillow>=2.3.0"
+
 
