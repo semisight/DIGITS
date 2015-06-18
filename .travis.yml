@@ -10,7 +10,7 @@ env:
         # Make
         - NUM_THREADS=4
         # Caffe
-        - WITH_CUDA=false
+        - WITH_CUDA=true # Installs CUDA, doesn't build it
         - WITH_CMAKE=false
 before_install:
     - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/cuda/lib64
@@ -18,6 +18,12 @@ before_install:
 install:
     # Caffe
     - ./scripts/travis/install-caffe.sh $(pwd)/deps/caffe
+
+    # XXX
+    - which nvcc
+    - ls -al /usr/local
+    - conda list
+    - pip list
 
     # Torch
     - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
@@ -29,6 +35,11 @@ install:
     # pip (slow)
     - pip install --quiet -r requirements.txt
     - pip install --quiet -r requirements_test.txt
+
+    # XXX
+    - conda list
+    - pip list
+
 before_script:
     - export CAFFE_HOME=$(pwd)/deps/caffe
     - export TORCH_HOME=$(pwd)/deps/torch
