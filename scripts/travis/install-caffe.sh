@@ -34,6 +34,11 @@ make --jobs=$NUM_THREADS --silent pycaffe
 # Install python dependencies
 # conda (fast)
 conda install --yes --quiet cython nose ipython h5py pandas python-gflags
+
+# XXX
+conda list
+pip list
+
 # pip (slow)
 for req in $(cat python/requirements.txt); do pip install $req; done
 
