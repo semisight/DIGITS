@@ -18,7 +18,7 @@ mkdir -p $INSTALL_DIR
 curl -sk https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash &>/dev/null
 git clone https://github.com/torch/distro.git $INSTALL_DIR --recursive
 cd $INSTALL_DIR
-./install.sh -b
+./install.sh -b &>/dev/null
 
 # Build LMDB
 LMDB_DIR=$INSTALL_DIR/lmdb
@@ -34,7 +34,9 @@ install_rock ()
     travis_wait $INSTALL_DIR/install/bin/luarocks install $@ &>/dev/null
 }
 
-install_rock image
+#install_rock image
+travis_wait $INSTALL_DIR/install/bin/luarocks install image
+
 install_rock inn
 install_rock "https://raw.github.com/Sravan2j/lua-pb/master/lua-pb-scm-0.rockspec"
 install_rock ccn2
