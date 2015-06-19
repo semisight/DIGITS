@@ -18,7 +18,7 @@ mkdir -p $INSTALL_DIR
 curl -sk https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | bash &>/dev/null
 git clone https://github.com/torch/distro.git $INSTALL_DIR --recursive
 cd $INSTALL_DIR
-travis_wait ./install.sh -b &>/dev/null
+travis_wait ./install.sh -b #&>/dev/null
 
 # Build LMDB
 LMDB_DIR=$INSTALL_DIR/lmdb
