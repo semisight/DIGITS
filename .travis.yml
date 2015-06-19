@@ -24,7 +24,7 @@ install:
     - pip list
 
     # Torch
-    - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
+    #    - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
 
     # DIGITS
     - sudo apt-get install graphviz
@@ -32,7 +32,7 @@ install:
     - conda install --quiet --yes gevent greenlet
     # pip (slow)
     - pip install --quiet -r requirements.txt
-    - pip install --quiet -r requirements_test.txt
+    - pip install -r requirements_test.txt
 
     # XXX
     - conda list
