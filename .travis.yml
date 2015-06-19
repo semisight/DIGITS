@@ -13,8 +13,8 @@ env:
         - WITH_CUDA=true # Installs CUDA, doesn't build it
         - WITH_CMAKE=false
 before_install:
-    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/cuda/lib64
-    - export PATH=$PATH:/home/travis/miniconda/bin:/usr/local/cuda/bin
+    - export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+    - export PATH=/home/travis/miniconda/bin:/usr/local/cuda/bin:$PATH
 install:
     # Caffe
     - ./scripts/travis/install-caffe.sh $(pwd)/deps/caffe
@@ -24,7 +24,7 @@ install:
     - pip list
 
     # Torch
-    - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
+    #    - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
 
     # DIGITS
     - sudo apt-get install graphviz
