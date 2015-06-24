@@ -26,7 +26,7 @@ If LMDB wasn’t already installed, install it using the command below:
 
 Other OS's:
 ```
-git clone https://gitorious.org/mdb/mdb.git ~/lmdb
+git clone https://github.com/LMDB/lmdb.git ~/lmdb
 cd ~/lmdb/libraries/liblmdb
 make
 ```

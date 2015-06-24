@@ -23,7 +23,7 @@ cd $INSTALL_DIR
 # Build LMDB
 LMDB_DIR=$INSTALL_DIR/lmdb
 pushd .
-git clone https://gitorious.org/mdb/mdb.git $LMDB_DIR
+git clone https://github.com/LMDB/lmdb.git $LMDB_DIR
 cd $LMDB_DIR/libraries/liblmdb
 make
 popd
