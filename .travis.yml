@@ -10,15 +10,22 @@ env:
         # Make
         - NUM_THREADS=4
         # Caffe
-        - WITH_CUDA=false
+        - WITH_CUDA=true
         - WITH_CMAKE=false
 before_install:
-    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-    - export PATH=/home/travis/miniconda/bin:$PATH
+    - export INSTALL_PREFIX=/home/travis/build/semisight/DIGITS/deps/torch/distro/install
+    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${INSTALL_PREFIX}/lib:/usr/local/lib:/usr/local/cuda/lib64
+    - export PATH=/home/travis/miniconda/bin:${INSTALL_PREFIX}/bin:$PATH
 install:
     # Caffe
     - pushd .
     - ./scripts/travis/install-caffe.sh $(pwd)/deps/caffe
+    - popd
+
+    # Torch
+    - pushd .
+    - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
+    - popd
 
     # DIGITS
     - sudo apt-get install graphviz
