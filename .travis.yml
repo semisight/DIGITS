@@ -17,14 +17,16 @@ before_install:
     - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${INSTALL_PREFIX}/lib:/usr/local/lib:/usr/local/cuda/lib64
     - export PATH=/home/travis/miniconda/bin:${INSTALL_PREFIX}/bin:$PATH
 install:
+    # Torch
+    - pushd .
+    - echo $(pwd)
+    - exit 1
+    - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
+    - popd
+
     # Caffe
     - pushd .
     - ./scripts/travis/install-caffe.sh $(pwd)/deps/caffe
-    - popd
-
-    # Torch
-    - pushd .
-    - ./scripts/travis/install-torch.sh $(pwd)/deps/torch
     - popd
 
     # DIGITS
