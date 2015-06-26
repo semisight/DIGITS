@@ -23,6 +23,7 @@ sudo apt-get -qq install gfortran gcc-multilib gfortran-multilib liblapack-dev
 curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-deps | sudo bash 2>&1 >/dev/null
 
 # clone distro (sources to be used)
+cd ..
 git clone https://github.com/torch/distro.git distro --recursive
 cd distro && git submodule update --init --recursive
 
